@@ -33,7 +33,7 @@ Ensure you have Python 3.7 or above installed on your system. You can download P
 
    - If using Git:
      ```bash
-     git clone <repository-url>
+     git clone https://github.com/shady-shuai/Budgeting-Tool.git
      cd budgeting_tool
      ```
    - If provided as a ZIP file, extract the contents and navigate to the extracted folder.
