@@ -54,16 +54,32 @@ class Visualization:
             print("No data to visualize.")
             return
 
+        # Group data by date and type
         df_grouped = df.groupby(['Date', 'Type'])['Amount'].sum().unstack().fillna(0)
 
-        fig, ax = plt.subplots(figsize=(10, 6))
-        df_grouped.plot(kind='bar', stacked=True, ax=ax)
-        ax.set_title("Income vs Expense (Stacked Bar Chart)")
-        ax.set_xlabel("Month")
-        ax.set_ylabel("Amount (CAD)")
+        # Create the figure and subplots
+        fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 6))
+
+        # Plot the line chart on the first subplot
+        df_grouped.plot(kind='line', marker='o', ax=ax1)
+        ax1.set_title("Income and Expense Trends")
+        ax1.set_xlabel("Month")
+        ax1.set_ylabel("Amount (CAD)")
+        ax1.legend(title="Type")
+        ax1.grid(True)
+
+        # Plot the bar chart on the second subplot with income and expenses side by side
+        df_grouped.plot(kind='bar', ax=ax2, width=0.8)
+        ax2.set_title("Monthly Income vs Expense")
+        ax2.set_xlabel("Month")
+        ax2.set_ylabel("Amount (CAD)")
+        ax2.legend(title="Type")
         plt.xticks(rotation=45)
+
         plt.tight_layout()
 
+        # Embed the figure in the Tkinter window
         canvas = FigureCanvasTkAgg(fig, master=parent)
         canvas.draw()
         canvas.get_tk_widget().pack()
+
