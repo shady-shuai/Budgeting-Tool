@@ -99,3 +99,7 @@ date,type,category,amount,currency
 2024-12-17,Expense,Bonus,3880.95,CAD
 2024-12-17,Expense,Rent,3186.72,CNY
 2024-12-26,Income,Groceries,4517.98,USD
+2024-12-09,Income,asd,11111.00,CAD
+2024-12-13,Income,test 2,30000.00,CAD
+2024-12-09,Expense,test33,6292.00,CNY
+2024-12-09,Income,test4,2181.60,GBP

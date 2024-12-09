@@ -44,8 +44,8 @@ class BudgetingApp:
     def add_expense(self):
         self.add_entry("Expense")
 
+    # Create a pop-up window for entry input
     def add_entry(self, entry_type):
-        # Create a pop-up window for entry input
         popup = tk.Toplevel(self.root)
         popup.title(f"Add {entry_type}")
         popup.geometry("300x400")
@@ -108,15 +108,15 @@ class BudgetingApp:
         save_button = ttk.Button(popup, text="Save", command=save_entry)
         save_button.pack(pady=10)
 
+    # Create a new window to display the visualization
     def display_category_visualization(self):
-        # Create a new window to display the visualization
         viz_window = tk.Toplevel(self.root)
         viz_window.title("Category Visualization")
         viz_window.geometry("800x600")
         self.visual.visualize_by_category(viz_window)
 
+    # Create a new window to display the trends visualization
     def display_trends_visualization(self):
-        # Create a new window to display the trends visualization
         viz_window = tk.Toplevel(self.root)
         viz_window.title("Trends Visualization")
         viz_window.geometry("800x600")

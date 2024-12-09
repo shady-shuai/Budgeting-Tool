@@ -1,5 +1,4 @@
 import csv
-from datetime import datetime
 import os
 import requests
 
@@ -10,6 +9,7 @@ class BudgetData:
         self.load_data()
         self.base_currency = "CAD"  # Default base currency
 
+    # Load data from CSV file if it exists
     def load_data(self):
         if os.path.exists(self.file_name):
             try:
@@ -23,6 +23,7 @@ class BudgetData:
         else:
             print("File not found. Starting with an empty budget.")
 
+    # Save current data to CSV file
     def save_data(self):
         try:
             with open(self.file_name, mode='w', newline='') as file:
@@ -34,6 +35,7 @@ class BudgetData:
         except Exception as e:
             print(f"Error saving file: {e}")
 
+    # Add a new income or expense entry
     def add_entry(self, entry_type, category, amount, date, currency):
         try:
             if entry_type not in ['Income', 'Expense']:
@@ -58,6 +60,7 @@ class BudgetData:
         except Exception as e:
             print(f"Error adding entry: {e}")
 
+    # Convert amount between currencies using an API
     def convert_currency(self, amount, from_currency, to_currency):
         try:
             url = f"https://api.exchangerate-api.com/v4/latest/{from_currency}"
@@ -72,5 +75,6 @@ class BudgetData:
             print(f"Error converting currency: {e}")
             return amount  # Fallback to original amount if API fails
 
+    # Retrieve unique categories for the specified entry type
     def get_categories(self, entry_type):
         return sorted({entry['category'] for entry in self.data if entry['type'] == entry_type})
